@@ -1,0 +1,22 @@
+{
+  "name": "rps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "rps.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexakearns/RPS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexakearns/RPS/issues"
+  },
+  "homepage": "https://github.com/alexakearns/RPS#readme",
+  "devDependencies": {
+    "jest": "^27.3.1"
+  }
+}
