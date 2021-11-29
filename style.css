@@ -4,6 +4,8 @@
   box-sizing: border-box;
   text-align: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #392F5A;
+  color: #fff;
 }
 
 header {
@@ -18,17 +20,13 @@ header {
 }
 
 .hands {
-  padding: 20px;
-  border: solid 4px black;
+  padding: 30px;
+  border: solid 5px #fff;
   border-radius: 50%;
   margin: 20px;
 }
 
-.option {
-  padding: 30px;
-}
-
-.option:hover {
+.hands:hover {
   color: blue;
   cursor: pointer;
   transform: scale(1.2);
