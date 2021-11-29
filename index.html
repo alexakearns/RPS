@@ -4,21 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rock Paper Scissors</title>
-  <script src="src/button.js"></script>
-  <script src="src/rps.js"></script>
   <link rel="stylesheet" href="style.css"></link>
+  <script src="https://kit.fontawesome.com/795efaf23f.js" ></script>
+
 </head>
 <body>
   <header>
-    <h1 class="game-title">RPS</h1>
+    <h1>Rock Paper Scissors</h1>
   </header>
   <div>
     <div class="game-options">
-      <h3 id="rock" class="option">Rock</h3>
-      <h3 id="paper" class="option">Paper</h3>
-      <h3 id="scissors" class="option">Scissors</h3>
+      <div id="rock" class="hands">
+        <i class="far fa-hand-rock fa-5x"></i>
+      </div>
+      <div id="paper" class="hands">
+        <i class="far fa-hand-paper fa-5x"></i>
+      </div>
+      <div id="scissors" class="hands">
+        <i class="far fa-hand-scissors fa-5x"></i>
+      </div>
     </div>
     <h2 id="result"></h2>
+    <div>
+      <p>User: <span id="user-score">0</span></p>
+      <p>Computer: <span id="computer-score">0</span></p>
+    </div>
+    <div class="btn">
+      <p id="reset-btn">Reset</p>
+    </div>
   </div>
+  <script src="/app.js"></script>
 </body>
 </html>
