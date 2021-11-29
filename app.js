@@ -9,57 +9,59 @@ const computerScoreTag = document.getElementById("computer-score");
 const resetBtn = document.getElementById("reset-btn");
 
 function getComputerChoice() {
-  const choices = ["rock-option", "paper-option", "scissors-option"];
+  const choices = ["Rock", "Paper", "Scissors"];
   const randomNum = (Math.floor(Math.random() * 3))
   return choices[randomNum]
 };
 
+
 function draw() {
-  result.innerHTML = "draw"
+  result.innerHTML = "Draw. Try again."
 }
-function win() {
+function win(userChoice, computerChoice) {
   userScore++;
-  result.innerHTML = "win"
+  result.innerHTML = userChoice + " beats " + computerChoice + ". You Win!"
   userScoreTag.innerHTML = userScore
+  
 }
-function lose() {
+function lose(userChoice, computerChoice) {
   computerScore++;
-  result.innerHTML = "lose"
+  result.innerHTML = computerChoice + " beats " + userChoice + ". You Lose!"
   computerScoreTag.innerHTML = computerScore;
 }
 
 function game(userChoice) {
   const computerChoice = getComputerChoice();
   switch(userChoice + computerChoice) {
-    case "rock-option rock-option":
-    case "paper-option paper-option":
-    case "scissors-option scissors-option":
+    case "Rock Rock":
+    case "Paper Paper":
+    case "Scissors Scissors":
       draw();
       break
-    case "rock-option scissors-option":
-    case "paper-option rock-option":
-    case "scissors-option paper-option":
-      win();
+    case "Rock Scissors":
+    case "Paper Rock":
+    case "Scissors Paper":
+      win(userChoice, computerChoice);
       break
-    case "rock-option paper-option":
-    case "paper-option scissors-option":
-    case "scissors-option rock-option":
-      lose();
+    case "Rock Paper":
+    case "Paper Scissors":
+    case "Scissors Rock":
+      lose(userChoice, computerChoice);
       break
   }
 }
 
 function rps() {
   rock.addEventListener('click', function() {
-    game("rock-option ")
+    game("Rock ")
   });
   
   paper.addEventListener('click', function() {
-    game("paper-option ")
+    game("Paper ")
   });
   
   scissors.addEventListener('click', function() {
-    game("scissors-option ")
+    game("Scissors ")
   });
 
   resetBtn.addEventListener('click', function() {
