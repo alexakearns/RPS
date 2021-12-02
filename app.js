@@ -7,73 +7,82 @@ const result = document.getElementById("result");
 const userScoreTag = document.getElementById("user-score");
 const computerScoreTag = document.getElementById("computer-score");
 const resetBtn = document.getElementById("reset-btn");
+const choices = ["Rock", "Paper", "Scissors"];
+const outcomeDictionary = {
+  winners: [
+    [choices[0], choices[2]],
+    [choices[1], choices[0]],
+    [choices[2], choices[1]]
+  ],
+  losers: [
+    [choices[0], choices[1]],
+    [choices[1], choices[2]],
+    [choices[2], choices[0]]
+  ]
+};
 
-function getComputerChoice() {
-  const choices = ["Rock", "Paper", "Scissors"];
-  const randomNum = (Math.floor(Math.random() * 3))
-  return choices[randomNum]
+const getComputerChoice = () => {
+  const randomNum = (Math.floor(Math.random() * 3));
+  return choices[randomNum];
 };
 
 
-function draw() {
-  result.innerHTML = "Draw. Try again."
-}
-function win(userChoice, computerChoice) {
+const draw = () => {
+  result.innerHTML = "Draw. Try again.";
+};
+
+const win = (outcome) => {
   userScore++;
-  result.innerHTML = userChoice + " beats " + computerChoice + ". You Win!"
-  userScoreTag.innerHTML = userScore
-  
-}
-function lose(userChoice, computerChoice) {
+  result.innerHTML = outcome[0] + " beats " + outcome[1] + ". You Win!";
+  userScoreTag.innerHTML = userScore;
+  // document.getElementById(userChoice.toLowerCase()).classList.add(".green")
+};
+
+const lose = (outcome) => {
   computerScore++;
-  result.innerHTML = computerChoice + " beats " + userChoice + ". You Lose!"
+  result.innerHTML = outcome[1] + " beats " + outcome[0] + ". You Lose!";
   computerScoreTag.innerHTML = computerScore;
-}
+};
 
-function game(userChoice) {
+const game = (userChoice) => {
   const computerChoice = getComputerChoice();
-  switch(userChoice + computerChoice) {
-    case "Rock Rock":
-    case "Paper Paper":
-    case "Scissors Scissors":
-      draw();
-      break
-    case "Rock Scissors":
-    case "Paper Rock":
-    case "Scissors Paper":
-      win(userChoice, computerChoice);
-      break
-    case "Rock Paper":
-    case "Paper Scissors":
-    case "Scissors Rock":
-      lose(userChoice, computerChoice);
-      break
-  }
-}
+  const outcome = [userChoice, computerChoice];
 
-function rps() {
-  rock.addEventListener('click', function() {
-    game("Rock ")
-  });
-  
-  paper.addEventListener('click', function() {
-    game("Paper ")
-  });
-  
-  scissors.addEventListener('click', function() {
-    game("Scissors ")
+  if (outcome[0] === outcome[1]) return draw();
+
+  outcomeDictionary.winners.map(item => {
+    if (item[0] === outcome[0] && item[1] === outcome[1]) return win(outcome);
   });
 
-  resetBtn.addEventListener('click', function() {
+  outcomeDictionary.losers.map(item => {
+    if (item[0] === outcome[0] && item[1] === outcome[1]) return lose(outcome);
+  });
+};
+
+const rps = () => {
+  rock.addEventListener("click", function() {
+    game(choices[0]);
+  });
+  
+  paper.addEventListener("click", function() {
+    game(choices[1]);
+  });
+  
+  scissors.addEventListener("click", function() {
+    game(choices[2]);
+  });
+
+  resetBtn.addEventListener("click", function() {
     reset();
-  })
-}
+  });
+};
 
-function reset() {
-  userScore = 0
-  computerScore = 0
-  userScoreTag.innerHTML = userScore
+const reset = () => {
+  userScore = 0;
+  computerScore = 0;
+  userScoreTag.innerHTML = userScore;
   computerScoreTag.innerHTML = computerScore;
-}
+  result.innerHTML = "Play";
+};
 
 rps();
