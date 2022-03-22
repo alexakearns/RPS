@@ -21,7 +21,7 @@ const outcomeDictionary = {
   ]
 };
 
-const getComputerChoice = () => {
+export const getComputerChoice = () => {
   const randomNum = (Math.floor(Math.random() * 3));
   return choices[randomNum];
 };
@@ -31,7 +31,7 @@ const draw = () => {
   result.innerHTML = "Draw. Try again.";
 };
 
-const win = (outcome) => {
+export const win = (outcome) => {
   userScore++;
   result.innerHTML = outcome[0] + " beats " + outcome[1] + ". You Win!";
   userScoreTag.innerHTML = userScore;
@@ -44,7 +44,7 @@ const lose = (outcome) => {
   computerScoreTag.innerHTML = computerScore;
 };
 
-const game = (userChoice) => {
+export const game = (userChoice) => {
   const computerChoice = getComputerChoice();
   const outcome = [userChoice, computerChoice];
 
@@ -63,11 +63,11 @@ const rps = () => {
   rock.addEventListener("click", function() {
     game(choices[0]);
   });
-  
+
   paper.addEventListener("click", function() {
     game(choices[1]);
   });
-  
+
   scissors.addEventListener("click", function() {
     game(choices[2]);
   });

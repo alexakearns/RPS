@@ -3,6 +3,7 @@ module.exports = {
         "browser": true,
         "es2021": true
     },
+    "sourceTypr": "module",
     "extends": "eslint:recommended",
     "parserOptions": {
         "ecmaVersion": 13
