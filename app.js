@@ -13,11 +13,6 @@ const outcomeDictionary = [
     [choices[1], choices[0]],
     [choices[2], choices[1]]
   ]
-  // losers: [
-  //   [choices[0], choices[1]],
-  //   [choices[1], choices[2]],
-  //   [choices[2], choices[0]]
-  // ]
 
   export function isSame(utg) {
     console.log(utg === userScoreTag)
@@ -37,8 +32,6 @@ export const win = (outcome) => {
   userScore++;
   result.innerHTML = outcome[0] + " beats " + outcome[1] + ". You Win!";
   userScoreTag.innerHTML = userScore;
-  console.log(userScoreTag.innerHTML, userScore);
-  // document.getElementById(userChoice.toLowerCase()).classList.add(".green")
 };
 
 const lose = (outcome) => {
@@ -56,19 +49,6 @@ export const game = (userChoice, computerChoice) => {
   })
 
   return result ? "win" : "lose"
-  // if (outcome[0] === outcome[1]) return draw();
-
-  // const result =  outcomeDictionary.winners.map(item => {
-  //   if (item[0] === outcome[0] && item[1] === outcome[1]) return "win"
-  //   // win(outcome);
-    
-  // });
-  // console.log(outcomeDictionary)
-  // console.log(result)
-
-  // outcomeDictionary.losers.map(item => {
-  //   if (item[0] === outcome[0] && item[1] === outcome[1]) return lose(outcome);
-  // });
 };
 
 export const gameResult = (score, outcome) => {

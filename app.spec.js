@@ -40,7 +40,7 @@ describe("rps", () => {
     root.append(resetBtn);
 
     document.body.append(root);
-    console.log(document.body.innerHTML);
+    jest.resetModules();
     app = require("./app");
     game = app.game;
     getComputerChoice = app.getComputerChoice;
@@ -99,8 +99,6 @@ describe("rps", () => {
   describe("result", () => {
     it("increases userScore when user wins", () => {
       gameResult("win", ["Rock", "Paper"]);
-      const ust = document.querySelectorAll("#user-score");
-      // console.log(Array.from(ust));
       expect(userScoreTag.innerHTML).toBe("1");
     });
   });
