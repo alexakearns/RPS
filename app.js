@@ -8,18 +8,17 @@ const userScoreTag = document.getElementById("user-score");
 const computerScoreTag = document.getElementById("computer-score");
 const resetBtn = document.getElementById("reset-btn");
 const choices = ["Rock", "Paper", "Scissors"];
-const outcomeDictionary = {
-  winners: [
+const outcomeDictionary = [
     [choices[0], choices[2]],
     [choices[1], choices[0]],
     [choices[2], choices[1]]
-  ],
-  losers: [
-    [choices[0], choices[1]],
-    [choices[1], choices[2]],
-    [choices[2], choices[0]]
   ]
-};
+  // losers: [
+  //   [choices[0], choices[1]],
+  //   [choices[1], choices[2]],
+  //   [choices[2], choices[0]]
+  // ]
+
 
 export const getComputerChoice = () => {
   const randomNum = (Math.floor(Math.random() * 3));
@@ -44,19 +43,30 @@ const lose = (outcome) => {
   computerScoreTag.innerHTML = computerScore;
 };
 
-export const game = (userChoice) => {
-  const computerChoice = getComputerChoice();
+export const game = (userChoice, computerChoice) => {
+  // const computerChoice = getComputerChoice();
   const outcome = [userChoice, computerChoice];
 
-  if (outcome[0] === outcome[1]) return draw();
+  if( userChoice === computerChoice) return "draw";
 
-  outcomeDictionary.winners.map(item => {
-    if (item[0] === outcome[0] && item[1] === outcome[1]) return win(outcome);
-  });
+  const result = outcomeDictionary.find(item => {
+    return item[0] === userChoice && item[1] === computerChoice
+  })
 
-  outcomeDictionary.losers.map(item => {
-    if (item[0] === outcome[0] && item[1] === outcome[1]) return lose(outcome);
-  });
+  return result ? "win" : "lose"
+  // if (outcome[0] === outcome[1]) return draw();
+
+  // const result =  outcomeDictionary.winners.map(item => {
+  //   if (item[0] === outcome[0] && item[1] === outcome[1]) return "win"
+  //   // win(outcome);
+    
+  // });
+  // console.log(outcomeDictionary)
+  // console.log(result)
+
+  // outcomeDictionary.losers.map(item => {
+  //   if (item[0] === outcome[0] && item[1] === outcome[1]) return lose(outcome);
+  // });
 };
 
 const rps = () => {

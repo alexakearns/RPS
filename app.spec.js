@@ -49,5 +49,28 @@ describe('rps', () => {
     it('should be a function', () => {
       expect(typeof game).toBe('function');
     });
+
+    it('result is draw if user is paper, computer is paper', () => {
+      const user = "Paper";
+      const comp = "Paper";
+
+      expect(game(user, comp)).toBe("draw")
+    });
+
+    it('result is win if user is paper, computer is rock', () => {
+      const user = "Paper";
+      const comp = "Rock";
+
+      expect(game(user, comp)).toBe("win")
+    });
+
+    it('result is lose if user is paper, computer is scissors', () => {
+      const user = "Paper";
+      const comp = "Scissors";
+
+      expect(game(user, comp)).toBe("lose") 
+    });
   });
+
+
 });
