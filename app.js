@@ -19,6 +19,9 @@ const outcomeDictionary = [
   //   [choices[2], choices[0]]
   // ]
 
+  export function isSame(utg) {
+    console.log(utg === userScoreTag)
+  }
 
 export const getComputerChoice = () => {
   const randomNum = (Math.floor(Math.random() * 3));
@@ -34,6 +37,7 @@ export const win = (outcome) => {
   userScore++;
   result.innerHTML = outcome[0] + " beats " + outcome[1] + ". You Win!";
   userScoreTag.innerHTML = userScore;
+  console.log(userScoreTag.innerHTML, userScore);
   // document.getElementById(userChoice.toLowerCase()).classList.add(".green")
 };
 
@@ -44,8 +48,6 @@ const lose = (outcome) => {
 };
 
 export const game = (userChoice, computerChoice) => {
-  // const computerChoice = getComputerChoice();
-  const outcome = [userChoice, computerChoice];
 
   if( userChoice === computerChoice) return "draw";
 
@@ -68,6 +70,16 @@ export const game = (userChoice, computerChoice) => {
   //   if (item[0] === outcome[0] && item[1] === outcome[1]) return lose(outcome);
   // });
 };
+
+export const gameResult = (score, outcome) => {
+  const fnMapping = {
+    "win": win,
+    "lose": lose,
+    "draw": draw,
+  };
+
+  fnMapping[score](outcome)
+}
 
 const rps = () => {
   rock.addEventListener("click", function() {
