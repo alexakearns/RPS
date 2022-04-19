@@ -9,20 +9,19 @@ const computerScoreTag = document.getElementById("computer-score");
 const resetBtn = document.getElementById("reset-btn");
 const choices = ["Rock", "Paper", "Scissors"];
 const outcomeDictionary = [
-    [choices[0], choices[2]],
-    [choices[1], choices[0]],
-    [choices[2], choices[1]]
-  ]
+  [choices[0], choices[2]],
+  [choices[1], choices[0]],
+  [choices[2], choices[1]],
+];
 
-  export function isSame(utg) {
-    console.log(utg === userScoreTag)
-  }
+export function isSame(utg) {
+  console.log(utg === userScoreTag);
+}
 
 export const getComputerChoice = () => {
-  const randomNum = (Math.floor(Math.random() * 3));
+  const randomNum = Math.floor(Math.random() * 3);
   return choices[randomNum];
 };
-
 
 const draw = () => {
   result.innerHTML = "Draw. Try again.";
@@ -41,42 +40,39 @@ const lose = (outcome) => {
 };
 
 export const game = (userChoice, computerChoice) => {
+  if (userChoice === computerChoice) return "draw";
 
-  if( userChoice === computerChoice) return "draw";
+  const result = outcomeDictionary.find((item) => {
+    return item[0] === userChoice && item[1] === computerChoice;
+  });
 
-  const result = outcomeDictionary.find(item => {
-    return item[0] === userChoice && item[1] === computerChoice
-  })
-
-  return result ? "win" : "lose"
+  return result ? "win" : "lose";
 };
 
 export const gameResult = (score, outcome) => {
   const fnMapping = {
-    "win": win,
-    "lose": lose,
-    "draw": draw,
+    win: win,
+    lose: lose,
+    draw: draw,
   };
 
-  fnMapping[score](outcome)
-}
+  fnMapping[score](outcome);
+};
+
+const gameGlue = (userSelection) => () => {
+  const selections = [userSelection, getComputerChoice()];
+  const outcome = game(...selections);
+  gameResult(outcome, selections);
+};
 
 const rps = () => {
-  rock.addEventListener("click", function() {
-    game(choices[0]);
-  });
+  rock.addEventListener("click", gameGlue(choices[0]));
 
-  paper.addEventListener("click", function() {
-    game(choices[1]);
-  });
+  paper.addEventListener("click", gameGlue(choices[1]));
 
-  scissors.addEventListener("click", function() {
-    game(choices[2]);
-  });
+  scissors.addEventListener("click", gameGlue(choices[2]));
 
-  resetBtn.addEventListener("click", function() {
-    reset();
-  });
+  resetBtn.addEventListener("click", reset);
 };
 
 const reset = () => {

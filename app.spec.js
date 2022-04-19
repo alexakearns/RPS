@@ -98,8 +98,30 @@ describe("rps", () => {
 
   describe("result", () => {
     it("increases userScore when user wins", () => {
-      gameResult("win", ["Rock", "Paper"]);
+      gameResult("win", ["Rock", "Scissors"]);
       expect(userScoreTag.innerHTML).toBe("1");
+    });
+
+    it("increases userScore when user wins", () => {
+      gameResult("win", ["Rock", "Scissors"]);
+      gameResult("win", ["Rock", "Scissors"]);
+      expect(userScoreTag.innerHTML).toBe("2");
+    });
+
+    it("increases computerScore when user loses", () => {
+      gameResult("lose", ["Paper", "Scissors"]);
+      expect(computerScoreTag.innerHTML).toBe("1");
+    });
+
+    it("doesn't change score when it's a draw", () => {
+      gameResult("draw", ["Paper", "Paper"]);
+      expect(userScoreTag.innerHTML).toBe("");
+      expect(computerScoreTag.innerHTML).toBe("");
+    });
+
+    it("updates users score in game statement when user wins", () => {
+      gameResult("win", ["Rock", "Scissors"]);
+      expect(result.innerHTML).toBe("Rock beats Scissors. You Win!");
     });
   });
 });
